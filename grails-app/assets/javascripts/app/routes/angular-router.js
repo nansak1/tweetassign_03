@@ -7,10 +7,10 @@ app.config(function ($routeProvider) {
             templateUrl: '/app/login.htm',
             controller: 'authController'
         })
-        .when('/home', {
+        /*.when('/home', {
             templateUrl: '/app/welcome.htm',
             controller: 'mainController'
-        })
+        })*/
         .when('/details', {
             templateUrl: '/app/account.htm',
             controller: 'accountController'
@@ -34,6 +34,14 @@ app.config(function ($routeProvider) {
             redirectTo: '/login'
         })
 
+});
+
+//shows nav bar only when logged in
+app.run(function($rootScope, $location) {
+    $rootScope.location = $location;
+
+    //auth token
+    //$http.defaults.headers.common.['X-auth-token'] = token;
 });
 
 
