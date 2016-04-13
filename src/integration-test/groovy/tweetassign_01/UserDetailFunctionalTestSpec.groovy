@@ -1,40 +1,44 @@
 package tweetassign_01
 
-import groovyx.net.http.RESTClient
+import geb.spock.GebSpec
+import grails.test.mixin.integration.Integration
 import spock.lang.Ignore
 import spock.lang.Shared
 
-@Ignore
-
+@Integration
 /**
  * Created by nayna on 4/5/2016.
  */
-class UserDetailFunctionalTestSpec {
+class UserDetailFunctionalTestSpec extends GebSpec{
 
-    RESTClient restClient
 
-    @Shared
-    def token
-    def username
 
     def setup(){
-        restClient = new RESTClient(baseUrl)
+        when:
+        go'/'
+        $("#login-form input[name=handle]").value("richelliot")
+        $("#login-form input[name=password]").value("msse2016ASSIGN")
+        $("#login").click()
+        sleep(1000)
+
+
+        then:
+        $(".page-header").text() == "Greetings"
     }
 
 
-    /*  def 'U1: User’s detail page will display the user’s name as well as a scrollable list of that user’s postings'(){
+      def 'U1: User’s detail page will display the user’s name as well as a scrollable list of that user’s postings'(){
 
           when:
-          //go to userdetail page
-          go(/details/username)
+          $("#details").click()
 
           then:
-          //$("#username").text() == username
-          $("#msg").text()
+          $("#userDetails td")[0].text() == "Richard Elliot"
+          //$("#userMsg td")[0].text() != ''
 
       }
 
-      def 'U2: User’s detail page will provide a way for the logged in user to follow the detail user'(){
+    /*  def 'U2: User’s detail page will provide a way for the logged in user to follow the detail user'(){
 
           when:
           show all accounts

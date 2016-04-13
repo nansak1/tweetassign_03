@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
             controller: 'authController'
         })
         /*.when('/home', {
-            templateUrl: '/app/welcome.htm',
+            templateUrl: '/app/navigation.htm',
             controller: 'mainController'
         })*/
         .when('/details', {

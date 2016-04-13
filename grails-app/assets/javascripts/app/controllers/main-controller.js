@@ -1,7 +1,7 @@
 /**
  * Created by nansak1 on 4/6/2016.
  */
-app.controller('mainController', function($scope, authService, $location){
+/*app.controller('mainController', function($scope, authService, $location){
 
     var user = authService.getUsername();
     var token = authService.getToken();
@@ -15,7 +15,7 @@ app.controller('mainController', function($scope, authService, $location){
     }
 
 
-    /* if (!user && !token){
+     if (!user && !token){
          $location.path('/login');
          $scope.isLoggedIn = null;
          console.log( "No token:" + $scope.isLoggedIn)
@@ -24,7 +24,7 @@ app.controller('mainController', function($scope, authService, $location){
          $location.path('/home')
          $scope.isLoggedIn = user;
          console.log( "token found:" + $scope.isLoggedIn)
-     }*/
+     }
 
     if (!token){
         $location.path('/login');
@@ -40,11 +40,11 @@ app.controller('mainController', function($scope, authService, $location){
     //$scope.isLoggedIn = authService.getUsername();
     //console.log("in main " +  $scope.isLoggedIn);
 
-    /*$scope.isActive = function (viewLocation) {
+    $scope.isActive = function (viewLocation) {
         return viewLocation == $location.path();
-    }*/
+    }
 
-});
+});*/
 
 /*app.controller('mainController', ['$scope', 'authService', '$location', function ($scope, authService, $location) {
 

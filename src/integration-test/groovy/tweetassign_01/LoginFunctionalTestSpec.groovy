@@ -2,7 +2,7 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
-import groovyx.net.http.RESTClient
+//import groovyx.net.http.RESTClient
 import spock.lang.Ignore
 
 //import spock.lang.Shared
@@ -13,13 +13,13 @@ import spock.lang.Ignore
  */
 class LoginFunctionalTestSpec extends GebSpec{
 
-    RESTClient restClient
+   // RESTClient restClient
 
     //@Shared
     //def token
 
     def setup(){
-        restClient = new RESTClient(baseUrl)
+        //restClient = new RESTClient(baseUrl)
     }
 
     def 'L1: When not logged in, route user to the login screen '(){

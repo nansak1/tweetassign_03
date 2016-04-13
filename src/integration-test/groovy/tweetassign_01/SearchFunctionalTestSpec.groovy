@@ -8,6 +8,7 @@ import spock.lang.Ignore
 /**
  * Created by nayna on 4/4/2016.
  */
+
 @Integration
 class SearchFunctionalTestSpec extends GebSpec{
 
@@ -21,9 +22,10 @@ class SearchFunctionalTestSpec extends GebSpec{
 
         when:
         go'/'
-        $("#login-form input[name=username]").value("richelliot")
+        $("#login-form input[name=handle]").value("richelliot")
         $("#login-form input[name=password]").value("msse2016ASSIGN")
         $("#login").click()
+        sleep(1000)
         $("#search").click()
 
         then:
@@ -87,7 +89,7 @@ class SearchFunctionalTestSpec extends GebSpec{
 
       }*/
 
-      def 'S3: Search result messages will display the message contents as well as the posting user.'(){
+  /*    def 'S3: Search result messages will display the message contents as well as the posting user.'(){
 
            when:
           //perform a search by message content
@@ -102,7 +104,7 @@ class SearchFunctionalTestSpec extends GebSpec{
 
       }
 
-   /* def 'S4: Clicking on the posting user’s name in a message will route to the user’s detail page.'(){
+    def 'S4: Clicking on the posting user’s name in a message will route to the user’s detail page.'(){
 
         when:
         //perform a search by message content

@@ -23,13 +23,14 @@ class NavigationFunctionalTestSpec extends GebSpec{
 
                 when:
                 go'/'
-                $("#login-form input[name=username]").value("richelliot")
+                $("#login-form input[name=handle]").value("richelliot")
                 $("#login-form input[name=password]").value("msse2016ASSIGN")
                 $("#login").click()
-                $("#search").click()
+                sleep(1000)
+                //$("#search").click()
 
                 then:
-                $(".page-header").text() == "Search"
+                $(".page-header").text() == "Greetings"
         }
 
 

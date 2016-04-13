@@ -9,7 +9,7 @@
 
 
 <body> <!--ng-controller="authController">-->
-<nav ng-include src="'/app/welcome.htm'" ng-if="location.path() !== '/login'" class="navbar navbar-default">
+<nav ng-include src="'/app/navigation.htm'" ng-if="location.path() !== '/login'" class="navbar navbar-default">
 <!--<nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
