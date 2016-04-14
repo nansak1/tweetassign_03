@@ -6,9 +6,9 @@
 //app.controller('authController', function ($scope, $location, $http, authService ) {
 app.controller('authController', ['$scope', 'authService', 'accService','$location', '$rootScope',function ($scope, authService, accService, $location,$rootScope) {
 
-
     var currentUser;
     $scope.isLoggedIn = null;
+    $scope.logout = null;
 
 
     $scope.Login = function () {
@@ -41,25 +41,19 @@ app.controller('authController', ['$scope', 'authService', 'accService','$locati
 
         $scope.destroyToken = function () {
 
+            $scope.logout = "Sorry to see you go";
+
+            alert("Sorry to see you go...");
             currentUser = undefined;
 
             $scope.isLoggedIn = undefined;
-            delete $rootScope.currentUser;
-            alert("Sorry to see you go...");
+            //delete $rootScope.currentUser;
+
             //console.log($scope.text);
-            $location.path('/');
+            //$location.path('/');
             authService.destroyToken();
-            console.log("User logged out and token destroyed");
-            /* .then(function(response){
+            console.log("User logged out and token destroyed")
 
-             //$scope.messages = response.data;
-             console.log("User logged out and token destroyed");
-             return response.data;
-             },
-             function(error) {
-             console.log('error', error);
-
-             });*/
         };
 
 

@@ -1,6 +1,7 @@
 <!--<div ng-controller="authController">-->
 <h1 class="page-header">Login</h1>
 
+<div id="logout" ng-model="logout">{{ logout }}</div>
 <form id="login-form">
 
     <div class="form-group">
@@ -18,7 +19,9 @@
         <button id="login" type="button" class="btn btn-warning btn-block" ng-click="Login()">Login</button>
     </div>
 
-        <!--<div class="error">-->
+
+
+    <!--<div class="error">-->
             <p>{{ error }}</p>
         <!--</div>-->
 
@@ -29,4 +32,4 @@
 
 </form>
 
-   <!-- </div>-->
+  <!-- </div>-->

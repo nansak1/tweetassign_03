@@ -5,6 +5,7 @@ import grails.test.mixin.integration.Integration
 import groovyx.net.http.RESTClient
 import spock.lang.Ignore
 import spock.lang.Shared
+import org.openqa.selenium.Alert
 
 @Integration
 
@@ -27,6 +28,7 @@ class NavigationFunctionalTestSpec extends GebSpec{
                 $("#login-form input[name=password]").value("msse2016ASSIGN")
                 $("#login").click()
                 sleep(1000)
+
                 //$("#search").click()
 
                 then:
@@ -54,17 +56,19 @@ class NavigationFunctionalTestSpec extends GebSpec{
 
           }
 
-         /* def 'N3: Logout - clicking this should bring you to the login screen and provide a helpful message ‘Sorry to see you go… etc’'(){
+          def 'N3: Logout - clicking this should bring you to the login screen and provide a helpful message ‘Sorry to see you go… etc’'(){
 
               when:
               //you click on the logout button
-              $(#logout).click()
+              $("#logout").click()
 
               then:
-              //go() api/login
-              alert("sorry to see you go")
+              Alert alert = driver.switchTo().alert();
+              alert.getText() == "Sorry to see you go..."
+              alert.accept();
+              $(".page-header").text() == "Login"
 
 
-          }*/
+          }
 
 }

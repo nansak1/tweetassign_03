@@ -2,12 +2,26 @@
  * Created by nayna on 4/5/2016.
  */
 app.controller('searchController', function ($scope, msgService, authService, accService, $location) {
-    $scope.message = 'Search something';
-    $scope.toggle = true;
+    //$scope.message = 'Search something';
+    //$scope.toggle = true;
 
 
     var currentUser = authService.getUsername();
     var token = authService.getToken();
+    //var allAccounts = {};
+
+    var allAccounts = accService.getAllAccounts(token);
+       /* .then(function(response){
+                allAccounts = response.data;
+                console.log(allAccounts.accountHandle);
+                //return response.data;
+            },
+            function(error) {
+                console.log("error", error);
+            });*/
+
+    console.log(allAccounts.accountHandle);
+
     $scope.aToken = token;
     $scope.isLoggedIn = currentUser;
 
@@ -45,13 +59,22 @@ app.controller('searchController', function ($scope, msgService, authService, ac
     // $scope.auth.token = authService.getToken();
     //$scope.auth.username = authService.getUsername()
 
+    /*  accService.getAllAccounts()
+     .then(function(response){
+     $scope.accounts = response.data;
+     return response.data;
+     },
+     function (error) {
+     console.log('error', error);
+     });*/
+
 
     //to route to account poster's detail page
     $scope.getMessages = function(params){
 
         accService.setAccount(params);
 
-        msgService.searchMessagesbyPoster(params)
+        msgService.searchMessagesbyPoster(params,token)
             .then(function(response){
                 msgService.setMessages(response.data);
                 $scope.messages = response.data;
@@ -70,6 +93,8 @@ app.controller('searchController', function ($scope, msgService, authService, ac
         //var params = {text: $scope.text};
         console.log($scope.text);
 
+
+
         //var userExists = accService.getAccount($scope.text);
        // console.log(userExists);
 
@@ -87,7 +112,7 @@ app.controller('searchController', function ($scope, msgService, authService, ac
 
 
         if (!$scope.account) { */ //is a username
-            msgService.searchMessages($scope.text)
+            msgService.searchMessages($scope.text,token)
                 .then(function (response) {
                         $scope.messages = response.data;
                         console.log($scope.messages);

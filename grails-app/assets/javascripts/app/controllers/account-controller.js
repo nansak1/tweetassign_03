@@ -70,7 +70,7 @@ app.controller('accountController', function($scope, accService, authService, ms
 
 
 //to get followers
-    accService.accountsFollowing(currentUser)
+    accService.accountsFollowing(currentUser,token)
     //$scope.Following = function(poster, currentUserInfo){
         .then(function(response)
         {
@@ -113,7 +113,7 @@ app.controller('accountController', function($scope, accService, authService, ms
 
 
     $scope.Follow = function(posterId){
-        accService.followAccount(currentUserInfo.id, posterId)
+        accService.followAccount(currentUserInfo.id, posterId, token)
             .then(function(response){
                     $scope.accounts = response.data;
                     $scope.state ="Following";
@@ -127,7 +127,7 @@ app.controller('accountController', function($scope, accService, authService, ms
 
     };
 
-    $scope.saveDetails = function(fullName, emailAddress)
+    $scope.saveDetails = function(fullName, emailAddress,token)
     {
         /*$scope.editorEnabled = true;
         console.log($scope.editorEnabled);
@@ -139,37 +139,6 @@ app.controller('accountController', function($scope, accService, authService, ms
 
     };
 
-  /*  $('button.followButton').live('click', function(e){
-        e.preventDefault();
-        $button = $(this);
-        if($button.hasClass('following')){
-
-//$.ajax(); Do Unfollow
-
-            $button.removeClass('following');
-            $button.removeClass('unfollow');
-            $button.text('Follow');
-        } else {
-
-            // $.ajax(); Do Follow
-
-            $button.addClass('following');
-            $button.text('Following');
-        }
-    });
-
-    $('button.followButton').hover(function(){
-        $button = $(this);
-        if($button.hasClass('following')){
-            $button.addClass('unfollow');
-            $button.text('Unfollow');
-        }
-    }, function(){
-        if($button.hasClass('following')){
-            $button.removeClass('unfollow');
-            $button.text('Following');
-        }
-    });*/
 
     /*if (!user && !token){
         $location.path('/login');
@@ -186,14 +155,7 @@ app.controller('accountController', function($scope, accService, authService, ms
    // var user = $scope.accountHandle
 
 
-  /*  accService.getAllAccounts()
-        .then(function(response){
-            $scope.accounts = response.data;
-            return response.data;
-        },
-            function (error) {
-        console.log('error', error);
-    });*/
+
 
 
 
