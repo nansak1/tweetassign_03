@@ -77,9 +77,9 @@ app.controller('searchController', function ($scope, msgService, authService, ac
         msgService.searchMessagesbyPoster(params,token)
             .then(function(response){
                 msgService.setMessages(response.data);
-                $scope.messages = response.data;
+                $scope.results = response.data;
                 //msgService.setMessages($scope.messages);
-                console.log($scope.messages);
+                console.log($scope.results);
                 return response.data;
             },
                 function(error) {

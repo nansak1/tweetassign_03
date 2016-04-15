@@ -1,8 +1,3 @@
-/**
- * Created by nansak1 on 4/5/2016.
- */
-
-
 app.service('authService', function($http){
 
     var username ={};
@@ -15,7 +10,6 @@ app.service('authService', function($http){
     var isLoggedIn = function(){
         return (username)? username : false;
     };
-
 
     var getUsername = function(){
         return username
@@ -33,14 +27,10 @@ app.service('authService', function($http){
     };
 
     var destroyToken = function(){
-        authToken = null;
-        username = null;
-
+        authToken = undefined;
+        username = undefined;
         currentUser = undefined;
-        //$scope.isLoggedIn = undefined;
-        //delete $rootScope.currentUser;
-        //return authToken;
-        //return username;
+
     };
 
 

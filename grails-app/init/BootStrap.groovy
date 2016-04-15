@@ -42,7 +42,7 @@ class BootStrap {
         def a5 = new Account(accountHandle: 'kkadeshian', fullName: 'Kim Kadeshian', emailAddress: 'kkadeshian@umn.edu', accountPassword: 'msse2016ASSIGN', followers: [a1, a2, a3, a4], following: [a2, a4]).save(failOnError: true)
         new UserRole(user: a5, role: role).save(flush: true, failOnError: true)
 
-        def a6 = new Account(accountHandle: 'w', fullName: 'nay na', emailAddress:'a@com', accountPassword:'msse2016ASSIGN').save(failOnError: true)
+        def a6 = new Account(accountHandle: 'nayna', fullName: 'nay na', emailAddress:'a@com', accountPassword:'msse2016ASSIGN').save(failOnError: true)
         def a7 = new Account(accountHandle: 'wa', fullName: 'nay na', emailAddress:'ab@com', accountPassword:'msse2016ASSIGN').save(failOnError: true)
         def a8 = new Account(accountHandle: 'wal', fullName: 'nay na', emailAddress:'abc@com', accountPassword:'msse2016ASSIGN').save(failOnError: true)
 
@@ -65,7 +65,7 @@ class BootStrap {
         def m16 = new Message(acc: a1, msgText: 'Hello World 10').save(failOnError: true)
         def m17 = new Message(acc: a1, msgText: 'Hello World 11').save(failOnError: true)
         def m18 = new Message(acc: a1, msgText: 'Hello World 12').save(failOnError: true)
-        def m19 = new Message(acc: a1, msgText: 'Hello World 13').save(failOnError: true)
+        def m19 = new Message(acc: a6, msgText: 'nayna is awesome').save(failOnError: true)
         def m20 = new Message(msgText: "It's a tree.", acc: a4).save(failOnError: true)
         def m21 = new Message(msgText: "Are you sure about that?.", acc: a1).save(failOnError: true)
         def m22 = new Message(msgText: "Yes most certainly", acc: a4).save(failOnError: true)

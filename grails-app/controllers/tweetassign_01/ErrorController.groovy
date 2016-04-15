@@ -8,7 +8,7 @@ class ErrorController {
 
     def internalServerError(){
         response.status = 500
-        render ([error: response.status, mesage: "Internal server error"]) as JSON
+        render ("error": response.status, "mesage": "Internal server error") as JSON
         /*render(contentType:'application/json'){
             error = response.status
             message ='Internal server error'
@@ -17,7 +17,7 @@ class ErrorController {
 
     def notFound(){
         response.status = 404
-        render ([error: response.status, message:"Not found"]) as JSON
+        render ("error": response.status,"message":"Not found") as JSON
         /*render(contentType:'application/json'){
             error = reponse.status
             message ='Not found'
@@ -26,7 +26,7 @@ class ErrorController {
 
     def unauthorized() {
         response.status = 401
-        render ([error:response.status, message: "Unauthorized"]) as JSON
+        render ("error":response.status, "message": "Unauthorized") as JSON
        /* render(contentType: 'application/json') {
             error = response.status
             message = 'Unauthorized'
@@ -36,7 +36,7 @@ class ErrorController {
     def forbidden() {
         response.status = 403
 
-        render ([error: response.status, message: "Forbidden"]) as JSON
+        render ("error": response.status, "message": "Forbidden") as JSON
         /*render(contentType: 'application/json') {
             error = response.status
             message = 'Forbidden'

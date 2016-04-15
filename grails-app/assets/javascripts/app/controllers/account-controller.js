@@ -59,14 +59,6 @@ app.controller('accountController', function($scope, accService, authService, ms
         }
     }
 
-    //function ClickToEditCtrl($scope){
-        //$scope.accounts;
-    //}
-
-    //console.log("Posting in user: " + $routeParams);
-
-
-
 
 
 //to get followers
@@ -127,8 +119,22 @@ app.controller('accountController', function($scope, accService, authService, ms
 
     };
 
-    $scope.saveDetails = function(fullName, emailAddress,token)
+    $scope.saveDetails = function(fullName, emailAddress,id)
     {
+        accService.updateAccount(fullName, emailAddress, id, token)
+            .then(function(response) {
+
+                response.data
+                console.log (response.data);
+                $scope.accounts.fullName = response.data.fullName;
+                $scope.accounts.emailAddress = response.data.emailAddress;
+
+                },
+                function(error) {
+                    console.log('error', error);
+
+                });
+
         /*$scope.editorEnabled = true;
         console.log($scope.editorEnabled);
         var updatedCredentials = {

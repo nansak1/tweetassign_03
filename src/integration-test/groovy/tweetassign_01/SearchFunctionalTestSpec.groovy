@@ -2,21 +2,17 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
-import groovyx.net.http.RESTClient
 import spock.lang.Ignore
 
 /**
  * Created by nayna on 4/4/2016.
  */
-
+@Ignore
 @Integration
 class SearchFunctionalTestSpec extends GebSpec{
 
 
-    RESTClient restClient
 
-    //@Shared
-    //def token
 
     def setup(){
 

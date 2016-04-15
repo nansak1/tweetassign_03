@@ -34,6 +34,23 @@ app.service('accService', function($http){
         return handle;
     };
 
+
+    var updateAccount = function (name, email, id, token){
+
+        $http.defaults.headers.post["Content-Type"] = "application/json";
+
+        return $http({
+            url: "/api/accounts/"+ id,
+            method: "PUT",
+            data: { "fullName": name, "emailAddress": email },
+            headers: {
+                'X-Auth-Token': token
+            }
+        });
+
+
+    };
+
     var followAccount = function(currentUser, poster,token){
         //return $http.put("/accounts/"+ poster +"/follow?follower="+currentUser);
         $http.defaults.headers.post["Content-Type"] = "application/json";
@@ -112,7 +129,8 @@ app.service('accService', function($http){
         setAccount: setAccount,
         followAccount:followAccount,
         accountsFollowing:accountsFollowing,
-        getAllAccounts : getAllAccounts
+        getAllAccounts : getAllAccounts,
+        updateAccount:updateAccount
     };
 
 });

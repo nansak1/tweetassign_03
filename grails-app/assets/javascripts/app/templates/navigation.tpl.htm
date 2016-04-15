@@ -1,30 +1,21 @@
+
 <div ng-controller="authController">
 <nav>
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">twtr</a>
             <ul class="nav navbar-nav navbar-right" >
-                <li id="logout" ng-click="destroyToken()"><a href="#/login">Logout</a></li>
-
-                <!--<li id="logout" ng-class="{ active: isActive('/login')}" ng-click="destroyToken()"><a href="#logout">Logout</a></li>-->
+                <li id="logout"><a ng-click="Logout()" href="#">Logout</a></li>
+                <!--<li id="logout"><a ng-click="Logout()" href="#/login">Logout</a></li>-->
                 <li id="search" ng-class="{active: isActive('/search')}"><a href="#/search">Search</a></li>
-
-                <!--<form ng-controller="searchController">
-                    <div class="form-group">
-                        <li ng-class="{ active: isActive('/search')}"><a href="#/search"><label for="searchInput">Search</label></a></li>
-                        <input id="searchInput" class="form-control" placeholder="searchTerm" type="text" name="text" ng-model="text"/>
-                        <button ng-click="searchMessages()">Search</button>
-                    </div></form>-->
-
                 <li id="details" ng-class="{ active: isActive('/details')}"><a href="#/details">Details</a></li>
             </ul>
         </div>
-        <!--</div>-->
     </div>
 </nav>
 </div>
 
-<div>
+<!--Token &current<div>
     {{ aToken }}
     {{ isLoggedIn }}
-</div>
+</div>-->

@@ -2,29 +2,19 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
-//import groovyx.net.http.RESTClient
 import spock.lang.Ignore
 
-//import spock.lang.Shared
-
 @Integration
-/**
- * Created by nansak1 on 4/1/2016.
- */
+
 class LoginFunctionalTestSpec extends GebSpec{
 
-   // RESTClient restClient
-
-    //@Shared
-    //def token
-
     def setup(){
-        //restClient = new RESTClient(baseUrl)
+
     }
 
     def 'L1: When not logged in, route user to the login screen '(){
         when:
-        go'/'   //Not logged in
+        go'/'
         then:
         $(".page-header").text() == "Login"
     }

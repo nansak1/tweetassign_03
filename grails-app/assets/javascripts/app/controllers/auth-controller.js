@@ -1,14 +1,8 @@
-/**
- * Created by nansak1 on 4/5/2016.
- */
-
-
-//app.controller('authController', function ($scope, $location, $http, authService ) {
-app.controller('authController', ['$scope', 'authService', 'accService','$location', '$rootScope',function ($scope, authService, accService, $location,$rootScope) {
+app.controller('authController', ['$scope', 'authService', 'accService','$location','$rootScope',function ($scope, authService, accService, $location,$rootScope) {
 
     var currentUser;
     $scope.isLoggedIn = null;
-    $scope.logout = null;
+    $scope.logout = false;
 
 
     $scope.Login = function () {
@@ -22,36 +16,31 @@ app.controller('authController', ['$scope', 'authService', 'accService','$locati
                 $scope.aToken = authService.getToken();
                 $scope.isLoggedIn = authService.getUsername();
                 currentUser = authService.getUsername();
-
-               // $rootScope.$emit('userChange', currentUser);
-
-                    $location.path('/details');
+                $location.path('/details');
             },
             function(error) {
-                //currentUser = undefined;
-               // delete $rootScope.currentUser;
-
                 $scope.error = "Invalid Login";
                 console.log($scope.error);
-
             });
         };
 
 
 
-        $scope.destroyToken = function () {
+       $scope.Logout = function () {
 
-            $scope.logout = "Sorry to see you go";
-
-            alert("Sorry to see you go...");
-            currentUser = undefined;
-
-            $scope.isLoggedIn = undefined;
-            //delete $rootScope.currentUser;
-
-            //console.log($scope.text);
-            //$location.path('/');
             authService.destroyToken();
+            $scope.isLoggedIn = authService.isLoggedIn();
+
+            $rootScope.logout = true;
+            $rootScope.logoutMsg = "Sorry to see you go";
+
+            console.log($scope.logout);
+            console.log($scope.logoutMsg);
+            console.log($scope.isLoggedIn);
+
+           //alert("Sorry to see you go...");
+            //currentUser = authService.getUsername();
+            //console.log(currentUser)
             console.log("User logged out and token destroyed")
 
         };
@@ -70,7 +59,7 @@ app.controller('authController', ['$scope', 'authService', 'accService','$locati
         }
    });*/
 
-    //$scope.isLoggedIn = authService.isLoggedIn();
+
     //function to keep track of login or logout
 
  /*   $scope.$watch(authService.isLoggedIn, function (value, oldValue) {

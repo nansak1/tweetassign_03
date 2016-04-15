@@ -2,26 +2,15 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
-import groovyx.net.http.RESTClient
+//import org.openqa.selenium.Alert
 import spock.lang.Ignore
-import spock.lang.Shared
-import org.openqa.selenium.Alert
+
 
 @Integration
 
-/**
- * Created by nayna on 4/5/2016.
- */
 class NavigationFunctionalTestSpec extends GebSpec{
 
-        RESTClient restClient
-
-        @Shared
-        def token
-
         def setup(){
-            //restClient = new RESTClient(baseUrl)
-
                 when:
                 go'/'
                 $("#login-form input[name=handle]").value("richelliot")
@@ -29,10 +18,8 @@ class NavigationFunctionalTestSpec extends GebSpec{
                 $("#login").click()
                 sleep(1000)
 
-                //$("#search").click()
-
                 then:
-                $(".page-header").text() == "Greetings"
+                $(".page-header").text() == "Greetings!!"
         }
 
 
@@ -63,9 +50,10 @@ class NavigationFunctionalTestSpec extends GebSpec{
               $("#logout").click()
 
               then:
-              Alert alert = driver.switchTo().alert();
-              alert.getText() == "Sorry to see you go..."
-              alert.accept();
+             // Alert alert = driver.switchTo().alert();
+              $("#loggedOut").text()=="Sorry to see you leave..."
+              //alert.getText() == "Sorry to see you go..."
+              //alert.accept();
               $(".page-header").text() == "Login"
 
 
