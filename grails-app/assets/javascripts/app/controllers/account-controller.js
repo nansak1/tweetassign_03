@@ -3,49 +3,84 @@
  */
 app.controller('accountController', function($scope, accService, authService, msgService, $location, $routeParams){
 
-    var user = authService.getUsername();
+    var currentUser = authService.getUsername();
+    var currentUserInfo =  accService.getUserProfile();
     var token = authService.getToken();
+    var poster = $routeParams.handle;
 
-   // var poster = accService.getAccount($routeParams);
-
-    console.log("in acc controller " + user);
-    console.log("in acc controller " + $routeParams.handle);
-
-    if (!$routeParams.handle){
-        user = user;
-    }
-    else {
-        user = $routeParams.handle;
-    }
-
-
-    $scope.aToken = token;
-    $scope.isLoggedIn = user;
-    console.log("Logged in user: " + user);
-    //console.log("Posting in user: " + $routeParams);
+    console.log("Logged in User in acc controller " + currentUser);
+    console.log("Poster in acc controller " + $routeParams.handle);
+    console.log("User id of logged in user in acc controller " + currentUserInfo.id);
+    console.log("following of logged in user in acc controller " + currentUserInfo.following);
 
 
 
-//auth stuff
-  /*  if (!token){
+    //auth stuff
+    if (!token && !currentUser){
         $location.path('/login');
-        $scope.isLoggedIn = null
+       // $scope.isLoggedIn = null
+        console.log("No token in acc:" + $scope.isLoggedIn);
     }
     else{
-        $location.path('/details');
-        $scope.isLoggedIn = user;
-    }*/
 
-//logic to determine logged in user or posting user
+        var anAccount = !poster ? currentUser : poster;
+        //$location.path('/');
+        $scope.isLoggedIn = currentUser;
+        console.log("token found in acc:" + $scope.isLoggedIn);
+    }
+
+    //is the user the current user or the poster
+
+    $scope.aToken = token;
+    $scope.isLoggedIn = currentUser;
+    $scope.poster = poster;
+    $scope.state = "Follow"
+    $scope.editorEnabled = false;
+
+    console.log("Logged in User in acc controller " + currentUser);
+    console.log("Poster in acc controller " + $routeParams.handle);
+    console.log("User id of logged in user in acc controller " + currentUserInfo.id);
+    console.log("following of logged in user in acc controller " + currentUserInfo.following);
+    //var currentUserFollowing = currentUserInfo.following;
+    //console.log(currentUserFollowing);
+    //console.log(currentUserFollowing.indexOf(poster))
+    //console.log($scope.Following);
+    console.log("Logged in user: " + currentUser);
+
+    //if current user is already following poster follow button should say "following"
+    if (poster && (poster!= currentUser)){
+        var currentUserFollowing = currentUserInfo.following;
+        if (currentUserFollowing.indexOf(poster) == -1) {
+            $scope.state = "Follow";
+            console.log($scope.state);
+        }
+        else {
+            $scope.state = "Following";
+        }
+    }
 
 
 
+//to get followers
+    accService.accountsFollowing(currentUser,token)
+    //$scope.Following = function(poster, currentUserInfo){
+        .then(function(response)
+        {
+        var currentUserFollowing = response.data.following;
+            console.log(currentUserFollowing);
+            console.log(poster);
+        },function(error){
+
+            console.log('error', error);
+    });
+
+   // }
 
 //edit stuff
 
 
 //display messages by user
-    msgService.searchMessagesbyPoster(user)
+    msgService.searchMessagesbyPoster(anAccount)
         .then(function(response){
             $scope.messages = response.data;
             return response.data;
@@ -56,9 +91,10 @@ app.controller('accountController', function($scope, accService, authService, ms
 
 
     //display logged in user info
-    accService.findAccount(user)
+    accService.findAccount(anAccount, token)
         .then(function(response){
                 $scope.accounts = response.data;
+                // currentUserId = $scope.accounts.id;
                 return response.data;
             },
             function (error) {
@@ -67,7 +103,47 @@ app.controller('accountController', function($scope, accService, authService, ms
 
 
 
-    //follow stuff
+
+    $scope.Follow = function(posterId){
+        accService.followAccount(currentUserInfo.id, posterId, token)
+            .then(function(response){
+                    $scope.accounts = response.data;
+                    $scope.state ="Following";
+                    console.log("current user following poster");
+                    return response.data;
+                },
+                function (error) {
+                    console.log('error', error);
+                });
+
+
+    };
+
+    $scope.saveDetails = function(fullName, emailAddress,id)
+    {
+        accService.updateAccount(fullName, emailAddress, id, token)
+            .then(function(response) {
+
+                response.data
+                console.log (response.data);
+                $scope.accounts.fullName = response.data.fullName;
+                $scope.accounts.emailAddress = response.data.emailAddress;
+
+                },
+                function(error) {
+                    console.log('error', error);
+
+                });
+
+        /*$scope.editorEnabled = true;
+        console.log($scope.editorEnabled);
+        var updatedCredentials = {
+            fullName: $scope.accounts.fullName,
+            emailAddress: $scope.accounts.emailAddress,
+        };*/
+
+
+    };
 
 
     /*if (!user && !token){
@@ -85,14 +161,7 @@ app.controller('accountController', function($scope, accService, authService, ms
    // var user = $scope.accountHandle
 
 
-  /*  accService.getAllAccounts()
-        .then(function(response){
-            $scope.accounts = response.data;
-            return response.data;
-        },
-            function (error) {
-        console.log('error', error);
-    });*/
+
 
 
 

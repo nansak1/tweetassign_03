@@ -1,11 +1,8 @@
-/**
- * Created by nansak1 on 4/5/2016.
- */
-
-
 app.service('authService', function($http){
+
     var username ={};
     var authToken ={};
+    var currentUser;
 
     var Login = function (accountHandle, accountPassword) {
         return $http.post('/api/login', {username: accountHandle, password: accountPassword })
@@ -30,10 +27,10 @@ app.service('authService', function($http){
     };
 
     var destroyToken = function(){
-        authToken = null;
-        username = null;
-        //return authToken;
-        //return username;
+        authToken = undefined;
+        username = undefined;
+        currentUser = undefined;
+
     };
 
 

@@ -2,14 +2,28 @@
  * Created by nayna on 4/5/2016.
  */
 app.controller('searchController', function ($scope, msgService, authService, accService, $location) {
-    $scope.message = 'Search something';
-    $scope.toggle = true;
+    //$scope.message = 'Search something';
+    //$scope.toggle = true;
 
 
-    var user = authService.getUsername();
+    var currentUser = authService.getUsername();
     var token = authService.getToken();
+    //var allAccounts = {};
+
+    var allAccounts = accService.getAllAccounts(token);
+       /* .then(function(response){
+                allAccounts = response.data;
+                console.log(allAccounts.accountHandle);
+                //return response.data;
+            },
+            function(error) {
+                console.log("error", error);
+            });*/
+
+    console.log(allAccounts.accountHandle);
+
     $scope.aToken = token;
-    $scope.isLoggedIn = user;
+    $scope.isLoggedIn = currentUser;
 
    // $scope.$watch($scope.isLoggedIn, function(isLoggedIn, aToken) {
      /*   if (!token){
@@ -22,27 +36,37 @@ app.controller('searchController', function ($scope, msgService, authService, ac
             $scope.isLoggedIn = user;
             console.log( "token found:" + $scope.isLoggedIn)
         }*/
-   /* if (!user && !token){
+
+    if (!currentUser && !token){
         $location.path('/login');
-        $scope.isLoggedIn = null;
-        console.log( "No token:" + $scope.isLoggedIn)
+        $scope.isLoggedIn = undefined;
+        console.log( "No token in search:" + $scope.isLoggedIn)
     }
     else{
-        $location.path('/search');
-        $scope.isLoggedIn = user;
-        console.log( "token found:" + $scope.isLoggedIn)
-    }*/
+        //$location.path('/');
+        $scope.isLoggedIn = currentUser;
+        console.log( "token found in search:" + $scope.isLoggedIn)
+    }
    // });
     //authService.isLoggedIn(user);
 
     // var user = $scope.accountHandle
 
-    console.log(user);
+    console.log(currentUser);
     //console.log(token);
     //console.log ($scope.text);
 
     // $scope.auth.token = authService.getToken();
     //$scope.auth.username = authService.getUsername()
+
+    /*  accService.getAllAccounts()
+     .then(function(response){
+     $scope.accounts = response.data;
+     return response.data;
+     },
+     function (error) {
+     console.log('error', error);
+     });*/
 
 
     //to route to account poster's detail page
@@ -50,13 +74,12 @@ app.controller('searchController', function ($scope, msgService, authService, ac
 
         accService.setAccount(params);
 
-        msgService.searchMessagesbyPoster(params)
+        msgService.searchMessagesbyPoster(params,token)
             .then(function(response){
-
                 msgService.setMessages(response.data);
-                $scope.messages = response.data;
+                $scope.results = response.data;
                 //msgService.setMessages($scope.messages);
-                console.log($scope.messages);
+                console.log($scope.results);
                 return response.data;
             },
                 function(error) {
@@ -69,6 +92,8 @@ app.controller('searchController', function ($scope, msgService, authService, ac
     $scope.searchMessages = function() {
         //var params = {text: $scope.text};
         console.log($scope.text);
+
+
 
         //var userExists = accService.getAccount($scope.text);
        // console.log(userExists);
@@ -87,7 +112,7 @@ app.controller('searchController', function ($scope, msgService, authService, ac
 
 
         if (!$scope.account) { */ //is a username
-            msgService.searchMessages($scope.text)
+            msgService.searchMessages($scope.text,token)
                 .then(function (response) {
                         $scope.messages = response.data;
                         console.log($scope.messages);

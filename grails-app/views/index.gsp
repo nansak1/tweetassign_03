@@ -8,40 +8,14 @@
 </head>
 
 
-<body> <!--ng-controller="authController">-->
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">twtr</a>
-           <!-- <li ng-class="{ active: isActive('/login')}" ng-click="destroyToken()"><a href="#">Logout</a></li>-->
+<body>
 
-           <!--ng-show="isLoggedIn"--> <!-- TO DO: Show if user is logged in-->
-            <ul class="nav navbar-nav navbar-right" ng-show="Login">
-                <li ng-class="{ active: isActive('/login')}" ng-click="destroyToken()"><a href="#logout">Logout</a></li>
-                <li ng-class="{ active: isActive('/search')}"><a href="#/search">Search</a></li>
-            <!--<form ng-controller="searchController">
-                <div class="form-group">
-                    <li ng-class="{ active: isActive('/search')}"><a href="#/search"><label for="searchInput">Search</label></a></li>
-                    <input id="searchInput" class="form-control" placeholder="searchTerm" type="text" name="text" ng-model="text"/>
-                    <button ng-click="searchMessages()">Search</button>
-                </div></form>-->
-
-                <li ng-class="{ active: isActive('/details')}"><a href="#/details">Details</a></li>
-            </ul>
-        </div>
-        <!--</div>-->
-</div>
-</nav>
+<!--<div id="loggedOut"  ng-show="logout">Sorry to see you leave...</div>-->
+<div id="loggedOut" class="alert alert-info" ng-show="logout" role="alert">Sorry to see you leave...</div>
+<nav ng-include src="'/app/navigation.htm'" ng-if="location.path() !== '/login'" class="navbar navbar-default"></nav>
 
 <div ng-view></div>
 
-<!--<footer class="jumbotron text-center">
-    <p>Footer Content</p>
-</footer>-->
-
-<div ng-model="aToken">
-    {{ aToken }}
-</div>
 
 </body>
 </html>

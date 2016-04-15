@@ -17,7 +17,7 @@
 
 // Create the angular application called 'app'
 
-var app = angular.module('app', ["ngRoute"/*, "ngResource"*/]);
+var app = angular.module('app', ["ngRoute"]);
 /*angular.module('app').controller('mainController', function($scope)
 {
 

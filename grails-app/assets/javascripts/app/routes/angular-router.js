@@ -1,15 +1,8 @@
-/**
- * Created by nansak1 on 4/1/2016.
- */
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/login', {
             templateUrl: '/app/login.htm',
             controller: 'authController'
-        })
-        .when('/home', {
-            templateUrl: '/app/welcome.htm',
-            controller: 'mainController'
         })
         .when('/details', {
             templateUrl: '/app/account.htm',
@@ -23,15 +16,24 @@ app.config(function ($routeProvider) {
             templateUrl: '/app/search.htm',
             controller: 'searchController'
         })
-       /* .when('/search:text', {
-            templateUrl: '/app/search.htm',
-            controller: 'searchController'
-        })*/
-        .when('/attendee/:action?/:id?', {
-            templateUrl: 'twtr/partials/attendee.htm'
-        })
         .otherwise({
             redirectTo: '/login'
-        });
+        })
+
 });
+
+//shows nav bar only when logged in
+app.run(function($rootScope, $location) {
+    $rootScope.location = $location;
+
+
+});
+
+
+
+
+
+
+
+
 

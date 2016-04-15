@@ -1,44 +1,45 @@
 package tweetassign_01
 
-import groovyx.net.http.RESTClient
+import geb.spock.GebSpec
+import grails.test.mixin.integration.Integration
+//import org.openqa.selenium.Alert
 import spock.lang.Ignore
-import spock.lang.Shared
 
-@Ignore
 
-/**
- * Created by nayna on 4/5/2016.
- */
-class NavigationFunctionalTestSpec {
+@Integration
 
-        RESTClient restClient
-
-        @Shared
-        def token
+class NavigationFunctionalTestSpec extends GebSpec{
 
         def setup(){
-            restClient = new RESTClient(baseUrl)
+                when:
+                go'/'
+                $("#login-form input[name=handle]").value("richelliot")
+                $("#login-form input[name=password]").value("msse2016ASSIGN")
+                $("#login").click()
+                sleep(1000)
+
+                then:
+                $(".page-header").text() == "Greetings!!"
         }
 
 
-        /*  def 'N1: User’s detail page'(){
+         def 'N1: User’s detail page'(){
 
               when:
-              //go(/accounts) Not logged in
+              $("#details").click()
 
               then:
-              //$(".page-header").text() == "Account Detail"
+              $(".page-header").text() == "Greetings!!"
 
           }
 
           def 'N2: Search box '(){
 
               when:
-              search is successful
-              //go(/search)
+              $("#search").click()
 
               then:
-              findElementbyId(#resultScroll) == true
+              $("#searchInput").text() == ''
 
           }
 
@@ -46,13 +47,16 @@ class NavigationFunctionalTestSpec {
 
               when:
               //you click on the logout button
-              (#logout).click
+              $("#logout").click()
 
               then:
-              //go() api/login
-              alert("sorry to see you go")
-              go(/login)
+             // Alert alert = driver.switchTo().alert();
+              $("#loggedOut").text()=="Sorry to see you leave..."
+              //alert.getText() == "Sorry to see you go..."
+              //alert.accept();
+              $(".page-header").text() == "Login"
 
-          }*/
+
+          }
 
 }

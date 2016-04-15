@@ -16,22 +16,37 @@ app.service('msgService', function($http){
         someMsg = msgResults;
     };
 
-    var searchMessages = function(searchText) {
+    var searchMessages = function(searchText,token) {
 
-       // if ($route.params) //determine if its by an account
-        //{
-        //var url = 'accounts/'+paramText+'/messages'
-         //  return $http.get('/accounts/'+paramText+'/messages'); //search by user
-        //}
-        //else {
-            return  $http.get("/messages/searchText", {params: {text: searchText}});  //search by message content
-        //}
+
+            //return  $http.get("/messages/searchText", {params: {text: searchText}});  //search by message content
+
+        $http.defaults.headers.post["Content-Type"] = "application/json";
+
+        return $http({
+            url: "/messages/searchText",
+            method: "GET",
+            params:{"text": searchText},
+            headers: {
+                'X-Auth-Token': token
+            }
+        })
+
 
     };
 
-    var searchMessagesbyPoster = function(accountHandle) {
+    var searchMessagesbyPoster = function(accountHandle,token) {
         //handle = accountHandle;
-        return $http.get('accounts/'+accountHandle +'/messages');
+        //return $http.get('accounts/'+accountHandle +'/messages');
+        $http.defaults.headers.post["Content-Type"] = "application/json";
+        //$http.get("/accounts/"+ currentUser)
+        return $http({
+            url: '/accounts/'+accountHandle +'/messages',
+            method: "GET",
+            headers: {
+                'X-Auth-Token': token
+            }
+        })
 
     };
 

@@ -26,14 +26,16 @@ class MessageController extends RestfulController {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         def accountId = params.accountId
+        def msgList
         if (accountId) {
             def accountInfo = (params.accountId as String).isNumber()
             if (accountInfo) {
                 accountId = Account.get(params.accountId)
+
             } else {
                 accountId = Account.findByAccountHandle(params.accountId)
             }
-            def msgList = Message.findAllByAcc(accountId, [max: params.max, sort: accountId.msg.dateCreated, order: "desc", offset: params.offset, text: params.text])
+            msgList = Message.findAllByAcc(accountId, [max: params.max, sort: accountId.msg.dateCreated, order: "desc", offset: params.offset, text: params.text])
             respond msgList
         } else {
             respond(status: 200, msgError: "No message found")

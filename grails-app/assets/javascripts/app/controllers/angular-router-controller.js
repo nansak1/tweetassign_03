@@ -1,14 +1,14 @@
 /**
  * Created by nansak1 on 4/2/2016.
  */
-app.controller('headerController', function ($scope, $location) {
+/*app.controller('headerController', function ($scope, $location) {
     $scope.message = 'I manage the header, meaning the nav tabs';
     $scope.isActive = function (viewLocation) {
         return viewLocation == $location.path();
     };
 });
 
-/*app.controller('mainController', function ($scope, $location, attendeeService) {
+app.controller('mainController', function ($scope, $location, attendeeService) {
     $scope.message = 'Default Routed Page (Home)';
     $scope.toggle = true;
 

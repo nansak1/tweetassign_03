@@ -1,32 +1,30 @@
-<!--<div ng-controller="authController">-->
+<div ng-controller="authController">
 <h1 class="page-header">Login</h1>
 
-<form id="login-form">
+    <div class="alert alert-info" ng-show="logout" role="alert">{{logoutMsg}}</div>
 
-    <div class="form-group">
-        <label for="handleInput">Username</label>
-        <input id="handleInput" name="handle" class="form-control" placeholder="handle" type="text" ng-model="accountHandle"/>
-    </div>
+<!--<p id="logout" ng-show="logout" ng-model="logout">{{ logoutMsg }}</p>
+<p>{{logoutMsg}}</p>-->
 
-    <div class="form-group">
-        <label for="passwordInput">Password</label>
-        <input id="passwordInput" name="password" class="form-control" placeholder="password" type="password", ng-model="accountPassword"/>
-    </div>
+    <form id="login-form">
 
-    <div class="form-group">
-        <!--<button type="button" class="btn btn-primary btn-block" ng-click="saveCurrentAttendee()">{{mode}}</button>-->
-        <button id="return" type="button" class="btn btn-warning btn-block" ng-click="Login()">Login</button>
-    </div>
-
-        <!--<div class="error">-->
+        <div class="form-group">
+            <label for="handleInput">Username</label>
+            <input id="handleInput" name="handle" class="form-control" placeholder="handle" type="text" ng-model="accountHandle"/>
+        </div>
+        <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input id="passwordInput" name="password" class="form-control" placeholder="password" type="password", ng-model="accountPassword"/>
+        </div>
+        <div class="form-group">
+        <button id="login" type="button" class="btn btn-warning btn-block" ng-click="Login()">Login</button>
+        </div>
+    <!--<div class="error">-->
             <p>{{ error }}</p>
         <!--</div>-->
-
+    <!--Token
     <div>
         {{ aToken }}
-    </div>
-
-
-</form>
-
-   <!-- </div>-->
+    </div>-->
+    </form>
+</div>
