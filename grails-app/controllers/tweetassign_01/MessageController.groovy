@@ -56,6 +56,21 @@ class MessageController extends RestfulController {
         }
     }
 
+    def searchByTextAndAccHandle() {
+        def searchTerm = params.text
+        if (searchTerm) {
+            def queryTxt = "select a.accountHandle,m.msgText,m.dateCreated from Message m,Account a " +
+                    "where m.acc.id=a.id and (m.msgText like '%${searchTerm}%' " +
+                    "or a.accountHandle like '%${searchTerm}%'))"
+            def results = Message.executeQuery(queryTxt)
+            def searchResult = results.collect { res -> ['accountHandle': res[0], 'msgText': res[1], 'dateCreated': res[2]]
+            }
+            render searchResult as JSON
+        } else {
+            respond(status: 200, msg: "No message found")
+        }
+    }
+
     @Override
     def createResource() {
         def accountId

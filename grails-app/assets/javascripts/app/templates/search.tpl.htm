@@ -1,31 +1,34 @@
 <h1 class="page-header">Search</h1>
-    <form>
+<form>
     <div class="form-group">
         <label for="searchInput">Search</label>
         <input id="searchInput" class="form-control" placeholder="searchTerm" type="text" name="text" ng-model="text"/>
-        <button id="searchBtn" ng-click="searchMessages();getMessages(text)">Search</button>
+
+        <button id="searchBtn" ng-click="searchByTextAndAccHandle()">Search</button>
     </div>
-    </form>
+</form>
 
-    <div id="searchResults" >
-     <table class="table table-hover">
-            <tr>
-                <th>User</th>
-                <th>Message</th>
-            </tr>
-            <!--For account Handle-->
-            <tr ng-show="results"ng-repeat="r in results">
-                <td><a href="#/details/{{text}}" class="handle">{{text}}</a></td>
-                <td>{{r.msgText}}</td>
-            </tr>
-            <tr ng-repeat="m in messages">
-                <td><a href="#/details/{{m.accountHandle}}" class="handle">{{m.accountHandle}}</a></td>
-                <td>{{m.msgText}}</td>
-            </tr>
-     </table>
-
-    </div>
-
-<!--<div>
-    {{ aToken }}
+<!--<div ng-repeat="m in messages">
+    {{ m.accountHandle }}
+    {{ m.msgText }}
 </div>-->
+
+<div id="searchResults" style="overflow:auto;">
+    <table class="table table-hover">
+        <tr>
+            <th>User</th>
+            <th>Message</th>
+
+        </tr>
+        <tr ng-repeat="m in messages">
+            <td><a href="#/details/{{m.accountHandle}}" class="handle">{{m.accountHandle}}</a></td>
+            <!--<td><a ng-model="m.accountHandle" href="#/details" ng-click="searchMessagesbyPoster(m.accountHandle)">{{m.accountHandle}}</a></td>-->
+            <td>{{m.msgText}}</td>
+        </tr>
+    </table>
+
+</div>
+
+<div>
+    {{ aToken }}
+</div>

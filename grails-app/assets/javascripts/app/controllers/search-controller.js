@@ -148,7 +148,20 @@ app.controller('searchController', function ($scope, msgService, authService, ac
     //$scope.getMessage();
     //$scope.searchMessages();
 
+    $scope.searchByTextAndAccHandle=function(){
+        console.log($scope.text);
+        console.log($scope.accHandle);
 
+        msgService.searchByTextAndAccHandle($scope.text,$scope.accHandle,token)
+            .then(function (response) {
+                    $scope.messages = response.data;
+                    console.log($scope.messages);
+                    return response.data;
+                },
+                function(error){
+                    console.log('error'.error);
+                })
+    };
 
 
 });
