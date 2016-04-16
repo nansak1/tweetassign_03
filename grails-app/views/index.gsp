@@ -10,7 +10,7 @@
 
 <body>
 
-<!--<div id="loggedOut"  ng-show="logout">Sorry to see you leave...</div>-->
+
 <div id="loggedOut" class="alert alert-info" ng-show="logout" role="alert">Sorry to see you leave...</div>
 <nav ng-include src="'/app/navigation.htm'" ng-if="location.path() !== '/login'" class="navbar navbar-default"></nav>
 

@@ -2,7 +2,6 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
-//import org.openqa.selenium.Alert
 import spock.lang.Ignore
 
 
@@ -27,6 +26,7 @@ class NavigationFunctionalTestSpec extends GebSpec{
 
               when:
               $("#details").click()
+              sleep(2000)
 
               then:
               $(".page-header").text() == "Greetings!!"
@@ -48,12 +48,11 @@ class NavigationFunctionalTestSpec extends GebSpec{
               when:
               //you click on the logout button
               $("#logout").click()
+              sleep(2000)
+
 
               then:
-             // Alert alert = driver.switchTo().alert();
-              $("#loggedOut").text()=="Sorry to see you leave..."
-              //alert.getText() == "Sorry to see you go..."
-              //alert.accept();
+              $("#loggedOut").text()== "Sorry to see you leave..."
               $(".page-header").text() == "Login"
 
 

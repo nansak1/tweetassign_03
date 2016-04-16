@@ -2,6 +2,7 @@ package tweetassign_01
 
 import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
+
 import spock.lang.Ignore
 
 
@@ -32,6 +33,9 @@ class UserDetailFunctionalTestSpec extends GebSpec{
           $("#userDetails td")[0].text() == "Donald Trump"
           $("#userMsg td")[0].text() == "Welcome to Minnesota"
           $("#userMsg td")[1].text() == "It's getting better, infact it is warm."
+          JavascriptExecutor scroll = (JavascriptExecutor) driver
+
+
     }
 
     def 'U2: User’s detail page will provide a way for the logged in user to follow the detail user'(){
@@ -78,6 +82,16 @@ class UserDetailFunctionalTestSpec extends GebSpec{
         $("#userDetails input[id=email]").value("don@draper.com")
         $("#Save").text()=="Save"
         $("#Save").click()
+
+        when:
+        $("#search").click()
+        $("#details").click()
+        sleep(3000)
+
+        then:
+        $('#userDetails td')[0].text()=="Don Draper"
+        $('#userDetails td')[1].text()=="don@draper.com"
+
 
 
     }

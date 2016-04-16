@@ -1,7 +1,3 @@
-/**
- * Created by nansak1 on 4/3/2016.
- */
-
 
 app.service('accService', function($http){
 
@@ -10,7 +6,6 @@ app.service('accService', function($http){
     var allAccounts ={};
 
     var getAllAccounts = function(token) {
-        //return $http.get('/accounts');
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
             url: "/api/accounts",
@@ -21,7 +16,6 @@ app.service('accService', function($http){
         })
             .then(function(response){
                     allAccounts = response.data;
-                //console.log(response.data);
                     return response.data;
                 },
                 function(error) {
@@ -52,7 +46,6 @@ app.service('accService', function($http){
     };
 
     var followAccount = function(currentUser, poster,token){
-        //return $http.put("/accounts/"+ poster +"/follow?follower="+currentUser);
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
             url: "/accounts/"+ poster +"/follow?follower="+currentUser,
@@ -64,7 +57,6 @@ app.service('accService', function($http){
     };
 
     var accountsFollowing = function(currentUser,token){
-        //return $http.get("/accounts/"+ currentUser +"/followers");
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
             url: "/accounts/"+ currentUser +"/followers",
@@ -78,7 +70,6 @@ app.service('accService', function($http){
 
 
     var setUserProfile = function(currentUser, token){
-
         $http.defaults.headers.post["Content-Type"] = "application/json";
         //$http.get("/accounts/"+ currentUser)
         return $http({
@@ -100,7 +91,6 @@ app.service('accService', function($http){
 
 
     var getUserProfile = function(){
-        //console.log(currentUserProfile);
         return currentUserProfile;
     };
 
@@ -110,7 +100,6 @@ app.service('accService', function($http){
 
     var findAccount = function(user, token) {
         $http.defaults.headers.post["Content-Type"] = "application/json";
-        //return $http.get('/accounts/'+ user);
 
         return $http({
             url: '/api/accounts/'+user,
