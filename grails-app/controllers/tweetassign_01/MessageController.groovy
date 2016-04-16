@@ -55,7 +55,7 @@ class MessageController extends RestfulController {
             respond(status: 200, msg: "No message found")
         }
     }
-//Commit Changes
+
     def searchByTextAndAccHandle() {
         def searchTerm = params.text
         if (searchTerm) {
