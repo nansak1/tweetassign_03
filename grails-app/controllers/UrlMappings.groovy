@@ -15,6 +15,7 @@ class UrlMappings {
             "/messages" (resources:'message')}
 
         "/messages/searchText" (controller: 'message', action: "searchText", method: "GET")
+        "/messages/searchTextAndAccHandle"(controller:'message',action:'searchByTextAndAccHandle',method:"GET")
 
         "/accounts/$accountId/followers"(controller: 'account', action: 'showFollower',method:"GET")
         "/accounts/$accountId/feed"(controller: 'account', action: 'showRecentMessage',method:"GET")

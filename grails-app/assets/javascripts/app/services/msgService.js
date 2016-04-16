@@ -1,7 +1,3 @@
-/**
- * Created by nansak1 on 4/3/2016.
- */
-
 app.service('msgService', function($http){
 
     var someMsg ={};
@@ -51,13 +47,29 @@ app.service('msgService', function($http){
     };
 
 
+    var searchByTextAndAccHandle=function(searchTerm,token){
+
+        $http.defaults.headers.post["Content-Type"]="application/json";
+
+        return $http({
+            url:'/messages/searchTextAndAccHandle',
+            method:"GET",
+            params:{"text":searchTerm,"accHandle":searchTerm},
+            headers:{
+                'X-Auth-Token': token
+            }
+        })
+    };
+
+
     return {
         //getMessages : function () {return $http.get('/messages');},
         //searchMessages: function (paramText){return  $http.get("/messages/searchText", {params: {text: paramText}});}
         getMessages:getMessages,
         setMessages:setMessages,
         searchMessages: searchMessages,
-        searchMessagesbyPoster : searchMessagesbyPoster
+        searchMessagesbyPoster : searchMessagesbyPoster,
+        searchByTextAndAccHandle:searchByTextAndAccHandle
 
     };
 
