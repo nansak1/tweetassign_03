@@ -79,6 +79,15 @@ class UserDetailFunctionalTestSpec extends GebSpec{
         $("#Save").text()=="Save"
         $("#Save").click()
 
+        when:
+        $("#search").click()
+        $("#details").click()
+        sleep(3000)
+
+        then:
+        $('#userDetails td')[0].text()=="Don Draper"
+        $('#userDetails td')[1].text()=="don@draper.com"
+
 
     }
 

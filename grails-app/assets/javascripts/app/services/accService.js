@@ -1,16 +1,10 @@
-/**
- * Created by nansak1 on 4/3/2016.
- */
+app.service('accService', function ($http) {
 
+    var handle = {};
+    var currentUserProfile = {};
+    var allAccounts = {};
 
-app.service('accService', function($http){
-
-    var handle ={};
-    var currentUserProfile ={};
-    var allAccounts ={};
-
-    var getAllAccounts = function(token) {
-        //return $http.get('/accounts');
+    var getAllAccounts = function (token) {
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
             url: "/api/accounts",
@@ -19,30 +13,29 @@ app.service('accService', function($http){
                 'X-Auth-Token': token
             }
         })
-            .then(function(response){
+            .then(function (response) {
                     allAccounts = response.data;
-                //console.log(response.data);
                     return response.data;
                 },
-                function(error) {
+                function (error) {
                     console.log("error", error);
                 });
     };
 
-    var setAccount = function(accountHandle){
+    var setAccount = function (accountHandle) {
         handle = accountHandle;
         return handle;
     };
 
 
-    var updateAccount = function (name, email, id, token){
+    var updateAccount = function (name, email, id, token) {
 
         $http.defaults.headers.post["Content-Type"] = "application/json";
 
         return $http({
-            url: "/api/accounts/"+ id,
+            url: "/api/accounts/" + id,
             method: "PUT",
-            data: { "fullName": name, "emailAddress": email },
+            data: {"fullName": name, "emailAddress": email},
             headers: {
                 'X-Auth-Token': token
             }
@@ -51,11 +44,10 @@ app.service('accService', function($http){
 
     };
 
-    var followAccount = function(currentUser, poster,token){
-        //return $http.put("/accounts/"+ poster +"/follow?follower="+currentUser);
+    var followAccount = function (currentUser, poster, token) {
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
-            url: "/accounts/"+ poster +"/follow?follower="+currentUser,
+            url: "/accounts/" + poster + "/follow?follower=" + currentUser,
             method: "PUT",
             headers: {
                 'X-Auth-Token': token
@@ -63,11 +55,10 @@ app.service('accService', function($http){
         });
     };
 
-    var accountsFollowing = function(currentUser,token){
-        //return $http.get("/accounts/"+ currentUser +"/followers");
+    var accountsFollowing = function (currentUser, token) {
         $http.defaults.headers.post["Content-Type"] = "application/json";
         return $http({
-            url: "/accounts/"+ currentUser +"/followers",
+            url: "/accounts/" + currentUser + "/followers",
             method: "GET",
             headers: {
                 'X-Auth-Token': token
@@ -76,22 +67,20 @@ app.service('accService', function($http){
     };
 
 
-
-    var setUserProfile = function(currentUser, token){
+    var setUserProfile = function (currentUser, token) {
 
         $http.defaults.headers.post["Content-Type"] = "application/json";
-        //$http.get("/accounts/"+ currentUser)
         return $http({
-            url: '/api/accounts/'+currentUser,
+            url: '/api/accounts/' + currentUser,
             method: "GET",
             headers: {
                 'X-Auth-Token': token
             }
         })
-            .then(function(response){
+            .then(function (response) {
                     currentUserProfile = response.data;
                 },
-                function(error) {
+                function (error) {
                     console.log('error', error);
 
                 })
@@ -99,21 +88,19 @@ app.service('accService', function($http){
     };
 
 
-    var getUserProfile = function(){
-        //console.log(currentUserProfile);
+    var getUserProfile = function () {
         return currentUserProfile;
     };
 
-    var getAccount = function() {
+    var getAccount = function () {
         return handle;
     };
 
-    var findAccount = function(user, token) {
+    var findAccount = function (user, token) {
         $http.defaults.headers.post["Content-Type"] = "application/json";
-        //return $http.get('/accounts/'+ user);
 
         return $http({
-            url: '/api/accounts/'+user,
+            url: '/api/accounts/' + user,
             method: "GET",
             headers: {
                 'X-Auth-Token': token
@@ -122,15 +109,15 @@ app.service('accService', function($http){
     };
 
     return {
-        findAccount : findAccount,
+        findAccount: findAccount,
         setUserProfile: setUserProfile,
-        getUserProfile:getUserProfile,
-        getAccount:getAccount,
+        getUserProfile: getUserProfile,
+        getAccount: getAccount,
         setAccount: setAccount,
-        followAccount:followAccount,
-        accountsFollowing:accountsFollowing,
-        getAllAccounts : getAllAccounts,
-        updateAccount:updateAccount
+        followAccount: followAccount,
+        accountsFollowing: accountsFollowing,
+        getAllAccounts: getAllAccounts,
+        updateAccount: updateAccount
     };
 
 });

@@ -78,15 +78,4 @@ class SearchFunctionalTestSpec extends GebSpec {
         $(".page-header").text() == "Greetings!!"
     }
 
-/*
-    def 'S2: Display matching results in a scrollable area below the search box '() {
-        when:
-        $("#searchInput").value("Hello")
-        $("#searchBtn").click()
-        sleep(1000)
-        then:
-        //$('#searchResults').
-        document.getElementById("searchResults").scrollTop(250);
-    }
-    */
 }

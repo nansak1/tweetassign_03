@@ -1,18 +1,17 @@
-
 <div ng-controller="authController">
-<nav>
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">twtr</a>
-            <ul class="nav navbar-nav navbar-right" >
-                <li id="logout"><a ng-click="Logout()" href="#">Logout</a></li>
-                <!--<li id="logout"><a ng-click="Logout()" href="#/login">Logout</a></li>-->
-                <li id="search" ng-class="{active: isActive('/search')}"><a href="#/search">Search</a></li>
-                <li id="details" ng-class="{ active: isActive('/details')}"><a href="#/details">Details</a></li>
-            </ul>
+    <nav>
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">twtr</a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="logout"><a ng-click="Logout()" href="#">Logout</a></li>
+                    <!--<li id="logout"><a ng-click="Logout()" href="#/login">Logout</a></li>-->
+                    <li id="search" ng-class="{active: isActive('/search')}"><a href="#/search">Search</a></li>
+                    <li id="details" ng-class="{ active: isActive('/details')}"><a href="#/details">Details</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </div>
 
 <!--Token &current<div>
