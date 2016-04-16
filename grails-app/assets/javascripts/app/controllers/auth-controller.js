@@ -32,7 +32,7 @@ app.controller('authController', ['$scope', 'authService', 'accService','$locati
             $scope.isLoggedIn = authService.isLoggedIn();
 
             $rootScope.logout = true;
-            $rootScope.logoutMsg = "Sorry to see you go";
+            //$rootScope.logoutMsg = "Sorry to see you go";
 
             console.log($scope.logout);
             console.log($scope.logoutMsg);

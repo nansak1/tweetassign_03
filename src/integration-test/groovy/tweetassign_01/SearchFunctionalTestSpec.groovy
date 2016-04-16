@@ -4,20 +4,15 @@ import geb.spock.GebSpec
 import grails.test.mixin.integration.Integration
 import spock.lang.Ignore
 
-/**
- * Created by nayna on 4/4/2016.
- */
-@Ignore
+
 @Integration
-class SearchFunctionalTestSpec extends GebSpec{
+class SearchFunctionalTestSpec extends GebSpec {
 
 
-
-
-    def setup(){
+    def setup() {
 
         when:
-        go'/'
+        go '/'
         $("#login-form input[name=handle]").value("richelliot")
         $("#login-form input[name=password]").value("msse2016ASSIGN")
         $("#login").click()
@@ -31,98 +26,67 @@ class SearchFunctionalTestSpec extends GebSpec{
     }
 
 
-   /* def 'Search Page'(){
-
-        when:
-        go'/'
-        $("#login-form input[name=username]").value("richelliot")
-        $("#login-form input[name=password]").value("msse2016ASSIGN")
-        $("#login").click()
-        $("#search").click()
-
-        then:
-        $(".page-header").text() == "Search"
-    }*/
-
-      def 'S1: Provide a search box for finding messages by message poster and message contents '(){
-
-          when:
-          //perform a search by message content
-          $("#searchInput").value("Atl")
-          $("#searchBtn").click()
-          sleep(1000)
-
-          then:
-          $("#searchResults td")[0].text() == "richelliot"
-          $("#searchResults td")[1].text() == "Welcome to Atlanta"
-
-
-      }
-
-  /*   def 'S2: Display matching results in a scrollable area below the search box '(){
-
-         when:
-         go '/login'
-         then:
-         $(".page-header").text() == "Login"
-
-         when:
-         $("#login-form input[name=username]").value("richelliot")
-         $("#login-form input[name=password]").value("msse2016ASSIGN")
-         $("#login-form input[type=submit]").click()
-
-         when:
-         //perform a search by account
-         $("#searchInput").text("")
-
-         then:
-         findElementbyId("#resultScroll") == true
-         $("#searchInput").value() == "richelliot"
-         $("#searchInput").value() == "some message about atlanta"
-
-
-
-
-      }*/
-
-  /*    def 'S3: Search result messages will display the message contents as well as the posting user.'(){
-
-           when:
-          //perform a search by message content
-          $("#searchInput").value("Atl")
-          $("#searchBtn").click()
-          sleep(1000)
-
-          then:
-
-          $("#searchResults td")[0].text() == "richelliot"
-          $("#searchResults td")[1].text() == "Welcome to Atlanta"
-
-      }
-
-    def 'S4: Clicking on the posting user’s name in a message will route to the user’s detail page.'(){
+    def 'S1A,S3: Provide a search box for finding messages by message poster and message contents - INPUT partial message '() {
 
         when:
         //perform a search by message content
-        $("#searchInput").value("warm")
+        $("#searchInput").value("Atl")
         $("#searchBtn").click()
         sleep(1000)
 
         then:
+        $("#searchResults td")[0].text() == "richelliot"
+        $("#searchResults td")[1].text() == "Welcome to Atlanta"
 
-        $("#searchResults td")[0].text() == "donaldtrump"
-        $("#searchResults td")[1].text() == "It's getting better, infact it is warm."
 
-       when:
+    }
 
-          $(".handle")[0].click()
-          sleep(2000)
+    def 'S1B,S3: Provide a search box for finding messages by message poster and message contents - INPUT poster'() {
+
+        when:
+        //perform a search by message content
+        $("#searchInput").value("nayna")
+        $("#searchBtn").click()
+        sleep(1000)
 
         then:
-        //perform a search by account
-        $("#userDetails td")[0].text()=="Donald Trump"
+        $("#searchResults td")[0].text() == "nayna"
+        $("#searchResults td")[1].text() == "nayna is awesome"
 
 
+    }
 
-    }*/
+    def 'S1C,S3 Count results [rows in table] for search messages retrieved on a given message poster/text'() {
+        when:
+        $("#searchInput").value("jeremy")
+        $("#searchBtn").click()
+        sleep(1000)
+        then:
+        $('#tblSearchResults tr').size() == 4
+
+    }
+
+    def 'S4: Clicking on the posting user’s name in a message will route to the user’s detail page'() {
+        when:
+        $("#searchInput").value("nayna")
+        $("#searchBtn").click()
+        sleep(1000)
+        $(".handle")[0].click()
+        sleep(5000)
+
+        then:
+        $(".page-header").text() == "Greetings!!"
+    }
+
+/*
+    def 'S2: Display matching results in a scrollable area below the search box '() {
+        when:
+        $("#searchInput").value("Hello")
+        $("#searchBtn").click()
+        sleep(1000)
+        then:
+        //$('#searchResults').
+        document.getElementById("searchResults").scrollTop(250);
+    }
+    */
 }

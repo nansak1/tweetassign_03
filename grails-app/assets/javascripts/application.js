@@ -18,12 +18,3 @@
 // Create the angular application called 'app'
 
 var app = angular.module('app', ["ngRoute"]);
-/*angular.module('app').controller('mainController', function($scope)
-{
-
-})*/
-
-// Define a controller called 'welcomeController'
-/*angular.module('app').controller('welcomeController', function($scope) {
-    $scope.greeting = 'Hello Stranger'
-});*/
