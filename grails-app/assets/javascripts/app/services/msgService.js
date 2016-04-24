@@ -47,6 +47,22 @@ app.service('msgService', function($http){
     };
 
 
+    var postMessages = function (accountHandle, msgText, token){
+
+        $http.defaults.headers.post["Content-Type"]="application/json";
+
+        return $http({
+            url:'/accounts/'+ accountHandle + '/messages',
+            method:"POST",
+            data: { "msgText": msgText},
+            headers:{
+                'X-Auth-Token': token
+            }
+        })
+
+    };
+
+
     var searchByTextAndAccHandle=function(searchTerm,token){
 
         $http.defaults.headers.post["Content-Type"]="application/json";
@@ -69,8 +85,8 @@ app.service('msgService', function($http){
         setMessages:setMessages,
         searchMessages: searchMessages,
         searchMessagesbyPoster : searchMessagesbyPoster,
-        searchByTextAndAccHandle:searchByTextAndAccHandle
-
+        searchByTextAndAccHandle:searchByTextAndAccHandle,
+        postMessages:postMessages
     };
 
 });

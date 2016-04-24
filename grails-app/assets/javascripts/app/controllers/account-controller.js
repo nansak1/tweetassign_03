@@ -7,6 +7,7 @@ app.controller('accountController', function($scope, accService, authService, ms
     var currentUserInfo =  accService.getUserProfile();
     var token = authService.getToken();
     var poster = $routeParams.handle;
+    $scope.messages = [];
 
     console.log("Logged in User in acc controller " + currentUser);
     console.log("Poster in acc controller " + $routeParams.handle);
@@ -76,7 +77,29 @@ app.controller('accountController', function($scope, accService, authService, ms
 
    // }
 
-//edit stuff
+//post stuff
+    $scope.postMessage= function(msgText)
+    {
+
+        console.log(msgText);
+        console.log(currentUser);
+
+        msgService.postMessages(currentUser, msgText, token)
+            .then(function (response) {
+
+                    $scope.messages.unshift(response.data);
+                    $scope.alerts =[{msg: 'Message posted', type: 'success'}];
+                    //var tweet = $scope.messages.length + 1;
+                    //var item = new String(tweet);
+                    //$scope.messages.splice(0,0, item);
+                    console.log($scope.messages);
+                    return response.data;
+                },
+                function (error){
+                    console.log("error", error);
+                });
+
+    };
 
 
 //display messages by user

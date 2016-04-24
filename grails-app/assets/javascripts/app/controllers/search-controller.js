@@ -119,7 +119,7 @@ app.controller('searchController', function ($scope, msgService, authService, ac
                         return response.data;
                     },
                     function (error) {
-                        console.log('error', error);
+                        console.log("error", error);
                     });
      /*  }
         else {
@@ -140,13 +140,9 @@ app.controller('searchController', function ($scope, msgService, authService, ac
 
 
     };
-    //console.log($scope.searchResults)
 
 
-    //};
 
-    //$scope.getMessage();
-    //$scope.searchMessages();
 
     $scope.searchByTextAndAccHandle=function(){
         console.log($scope.text);
