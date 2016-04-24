@@ -18,14 +18,14 @@
         <td><a id="followBtn" type="button" ng-show="poster" ng-model="Following" class="btn btn-primary btn-large" ng-click="Follow(accounts.id)">{{state}}</a></td>
 
     </tr>
-        <form name="form">
+
     <tr ng-show="editorEnabled">
         <!--<input ng-model="accounts.id">{{accounts.id }}</input>-->
         <td><input id="fullname" ng-model="accounts.fullName"/></td>
         <td><input id="email" ng-model="accounts.emailAddress"/></td>
         <td><a id="Save" type="button" ng-show="isLoggedIn" ng-hide="poster" class="btn btn-primary btn-large" ng-click="saveDetails(accounts.fullName, accounts.emailAddress, accounts.id);editorEnabled=!editorEnabled">Save</a></td>
     </tr>
-
+        <form name="form">
             <div class="control-group" ng-class="{true: 'error'}[submitted && form.msgText.$invalid]">
                 <label class="control-label" for="tweet">Post a message</label>
                 <div class="controls">
