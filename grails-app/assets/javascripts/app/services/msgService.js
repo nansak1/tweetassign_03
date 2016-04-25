@@ -1,28 +1,23 @@
-app.service('msgService', function($http){
+app.service('msgService', function ($http) {
 
-    var someMsg ={};
-    //var handle = {};
+    var someMsg = {};
 
-    var getMessages = function() {
-        //return $http.get('/messages');
+    var getMessages = function () {
         return someMsg;
     };
 
-    var setMessages = function(msgResults){
+    var setMessages = function (msgResults) {
         someMsg = msgResults;
     };
 
-    var searchMessages = function(searchText,token) {
-
-
-            //return  $http.get("/messages/searchText", {params: {text: searchText}});  //search by message content
+    var searchMessages = function (searchText, token) {
 
         $http.defaults.headers.post["Content-Type"] = "application/json";
 
         return $http({
             url: "/messages/searchText",
             method: "GET",
-            params:{"text": searchText},
+            params: {"text": searchText},
             headers: {
                 'X-Auth-Token': token
             }
@@ -31,13 +26,11 @@ app.service('msgService', function($http){
 
     };
 
-    var searchMessagesbyPoster = function(accountHandle,token) {
-        //handle = accountHandle;
-        //return $http.get('accounts/'+accountHandle +'/messages');
+    var searchMessagesbyPoster = function (accountHandle, token) {
+
         $http.defaults.headers.post["Content-Type"] = "application/json";
-        //$http.get("/accounts/"+ currentUser)
         return $http({
-            url: '/accounts/'+accountHandle +'/messages',
+            url: '/accounts/' + accountHandle + '/messages',
             method: "GET",
             headers: {
                 'X-Auth-Token': token
@@ -47,15 +40,15 @@ app.service('msgService', function($http){
     };
 
 
-    var searchByTextAndAccHandle=function(searchTerm,token){
+    var searchByTextAndAccHandle = function (searchTerm, token) {
 
-        $http.defaults.headers.post["Content-Type"]="application/json";
+        $http.defaults.headers.post["Content-Type"] = "application/json";
 
         return $http({
-            url:'/messages/searchTextAndAccHandle',
-            method:"GET",
-            params:{"text":searchTerm,"accHandle":searchTerm},
-            headers:{
+            url: '/messages/searchTextAndAccHandle',
+            method: "GET",
+            params: {"text": searchTerm, "accHandle": searchTerm},
+            headers: {
                 'X-Auth-Token': token
             }
         })
@@ -63,13 +56,12 @@ app.service('msgService', function($http){
 
 
     return {
-        //getMessages : function () {return $http.get('/messages');},
-        //searchMessages: function (paramText){return  $http.get("/messages/searchText", {params: {text: paramText}});}
-        getMessages:getMessages,
-        setMessages:setMessages,
+
+        getMessages: getMessages,
+        setMessages: setMessages,
         searchMessages: searchMessages,
-        searchMessagesbyPoster : searchMessagesbyPoster,
-        searchByTextAndAccHandle:searchByTextAndAccHandle
+        searchMessagesbyPoster: searchMessagesbyPoster,
+        searchByTextAndAccHandle: searchByTextAndAccHandle
 
     };
 

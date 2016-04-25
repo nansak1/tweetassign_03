@@ -9,7 +9,6 @@
 </form>
 
 
-
 <div id="searchResults">
     <table class="table table-hover" id="tblSearchResults">
         <tr>
@@ -19,13 +18,12 @@
         </tr>
         <tr ng-repeat="m in messages">
             <td><a href="#/details/{{m.accountHandle}}" class="handle">{{m.accountHandle}}</a></td>
-            <!--<td><a ng-model="m.accountHandle" href="#/details" ng-click="searchMessagesbyPoster(m.accountHandle)">{{m.accountHandle}}</a></td>-->
             <td>{{m.msgText}}</td>
         </tr>
     </table>
 
 </div>
 
-<div>
+<!--Token <div>
     {{ aToken }}
-</div>
+</div> -->

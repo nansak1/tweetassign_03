@@ -16,10 +16,9 @@ class NavigationFunctionalTestSpec extends GebSpec{
                 $("#login-form input[name=handle]").value("richelliot")
                 $("#login-form input[name=password]").value("msse2016ASSIGN")
                 $("#login").click()
-                sleep(1000)
 
                 then:
-                $(".page-header").text() == "Greetings!!"
+                waitFor { $(".page-header").text() == "Greetings!!" }
         }
 
 
@@ -46,14 +45,10 @@ class NavigationFunctionalTestSpec extends GebSpec{
           def 'N3: Logout - clicking this should bring you to the login screen and provide a helpful message ‘Sorry to see you go… etc’'(){
 
               when:
-              //you click on the logout button
               $("#logout").click()
 
               then:
-             // Alert alert = driver.switchTo().alert();
               $("#loggedOut").text()=="Sorry to see you leave..."
-              //alert.getText() == "Sorry to see you go..."
-              //alert.accept();
               $(".page-header").text() == "Login"
 
 
